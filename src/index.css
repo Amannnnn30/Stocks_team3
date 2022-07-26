@@ -5,11 +5,19 @@
 }
 
 body {
-    background-image: url('./images/Stocks_1.jpeg');
+
+  margin: 0;
+  height: 100%;
+    background: url('./images/stock.jpeg')  no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
     color: white;
-    padding: 40px;
     font-family: italic;
     text-align: center;
+    
 }
 header {
   background-color: #fefeff;

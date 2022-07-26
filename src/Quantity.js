@@ -15,7 +15,7 @@ function handleChange(event){
           <label for="quantity"> Quantity</label>
           <input type="number" id="quantity" name="quantity" onChange={handleChange}/>
         </div>
-        <div id="tpa">Total Purchase Amount <div id='total'></div></div>
+        <div id="tpa">Total Purchase Amount: <span id='total'></span></div>
       </div>
     );
 //   } 

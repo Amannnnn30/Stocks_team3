@@ -35,14 +35,16 @@ class App extends Component {
     const myStyle ={
       color : "black",
       backgroundColor: "white",
-      padding: "10px"
+      padding: "10px",
+      width: "50%",
+      margin: "0 auto"
     };
     return (
       <div style={myStyle}>
         
         <h1>WELCOME TO STOCK MARKET!</h1>
         <div>
-          <h3>WATCHLIST</h3>
+          <h3>Here is you watchlist</h3>
           Choose a stock:
           <div>
             <select id="stockname" onChange={(e)=>{
@@ -53,16 +55,14 @@ class App extends Component {
               this.setState({
                 price:e.target.value
               })
-              
-            
           }}>
-              {optionsList}
+            {optionsList}
             </select>
           </div>
         </div>
         <div>
           Price:
-          <div id="sprice"></div>
+          <span id="sprice"></span>
         </div>
         <QuantityComponent price={this.state.price} />
         <PnlCalculation />
@@ -70,24 +70,7 @@ class App extends Component {
     );
   }
 }
-// class StockSelect extends Component {
-//   // handleChange(event){
-//   //   var quantity=event.target.value;
-//   //   console.log(this.state.price,quantity);
-//   // }
-//   // render(){
-//   //   // console.log(this.props.data);
-//   //   return (
-//   //     <div>
-//   //       <div id="quantity" className="quantity">
-//   //         <label for="quantity"> Quantity</label>
-//   //         <input type="number" id="quantity" name="quantity" onChange={this.handleChange}/>
-//   //       </div>
-//   //       <div id="tpa">Total Purchase Amount </div>
-//   //     </div>
-//   //   );
-//   // }
-// }
+
 class PnlCalculation extends Component {
   render() {
     return (
