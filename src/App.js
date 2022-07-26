@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import QuantityComponent from './Quantity';
+import "./App.css"
 
 class App extends Component {
   constructor() {
@@ -31,8 +32,14 @@ class App extends Component {
       </option>
     ));
     // let { strData } = this.state;
+    const myStyle ={
+      color : "black",
+      backgroundColor: "white",
+      padding: "10px"
+    };
     return (
-      <div>
+      <div style={myStyle}>
+        
         <h1>WELCOME TO STOCK MARKET!</h1>
         <div>
           <h3>WATCHLIST</h3>
@@ -54,7 +61,7 @@ class App extends Component {
           </div>
         </div>
         <div>
-          price
+          Price:
           <div id="sprice"></div>
         </div>
         <QuantityComponent price={this.state.price} />
