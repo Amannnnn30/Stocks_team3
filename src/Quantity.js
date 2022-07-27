@@ -12,7 +12,7 @@ function handleChange(event){
     return (
       <div>
         <div id="quantity" className="quantity">
-          <label for="quantity"> Quantity</label>
+          <label for="quantity"> Enter the quantity:</label>
           <input type="number" id="quantity" name="quantity" onChange={handleChange}/>
         </div>
         <div id="tpa">Total Purchase Amount: <span id='total'></span></div>
