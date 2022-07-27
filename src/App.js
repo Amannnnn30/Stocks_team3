@@ -21,7 +21,7 @@ class App extends Component {
       strData: event.target.value,
     });
     console.log("testing", event.target.value, this.state.strData);
-    this.state.price=event.target.value;
+    this.state.price = event.target.value;
     // document.getElementById("sprice").innerHTML = this.state.price;
 
   }
@@ -32,8 +32,8 @@ class App extends Component {
       </option>
     ));
     // let { strData } = this.state;
-    const myStyle ={
-      color : "black",
+    const myStyle = {
+      color: "black",
       backgroundColor: "white",
       padding: "10px",
       width: "50%",
@@ -41,24 +41,24 @@ class App extends Component {
     };
     return (
       <div style={myStyle}>
-        
+
         <h1>WELCOME TO STOCK MARKET!</h1>
         <div>
           <h3>Here is you watchlist</h3>
-          Choose a stock:
-          <div>
-            <select id="stockname" onChange={(e)=>{
-              console.log(e,'this is e');
+          Choose a stock to buy:
+          <span>
+            <select id="stockname" onChange={(e) => {
+              console.log(e, 'this is e');
               this.strDataShow.bind(e);
-              this.state.price=e.target.value;
+              this.state.price = e.target.value;
               document.getElementById("sprice").innerHTML = this.state.price;
               this.setState({
-                price:e.target.value
+                price: e.target.value
               })
-          }}>
-            {optionsList}
+            }}>
+              {optionsList}
             </select>
-          </div>
+          </span>
         </div>
         <div>
           Price:
