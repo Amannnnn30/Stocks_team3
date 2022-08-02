@@ -2,7 +2,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 const PnlComponent = () => {
-
     const location = useLocation();
     const pro = location.state.props;
     console.log(location.state);
@@ -15,7 +14,6 @@ const PnlComponent = () => {
             </h2>
         </div>
     );
-
 }
 
 export default PnlComponent;

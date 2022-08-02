@@ -16,8 +16,8 @@ class App extends Component {
       quantity: 0,
       amount: 0,
       stockId: 0,
-      profitPortfolio:0,
-      lossPortfolio:0,
+      profitPortfolio: 0,
+      lossPortfolio: 0,
       data: [
         { id: 1, stock: "HCL", price: 500 },
         { id: 2, stock: "Infosys", price: 1000 },
