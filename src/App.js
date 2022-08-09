@@ -10,14 +10,12 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      portfolio: 0,
+      portfolio: 100,
       price: 0,
       strData: 0,
       quantity: 0,
       amount: 0,
       stockId: 0,
-      profitPortfolio: 0,
-      lossPortfolio: 0,
       data: [
         { id: 1, stock: "HCL", price: 500 },
         { id: 2, stock: "Infosys", price: 1000 },
@@ -27,26 +25,31 @@ class App extends Component {
     };
   }
 
-  async profitCalc(event) {
-    var profit = parseInt(document.getElementById("total").innerHTML);
-    var profitAmt = profit * 0.015 + this.state.portfolio;
-    console.log(profitAmt);
-    await this.setState({ portfolio: profitAmt }, () => {
-      console.log(this.state.portfolio, 'portfolio');
-    });
-    console.log("*************", this.state.portfolio);
-  }
+  profitCalc() {
+    
+    
+    // callback timer
 
+
+
+    var amount = parseInt(document.getElementById("total").innerHTML);
+    var profitAmt = amount * 0.015 + this.state.portfolio;
+    console.log(profitAmt);
+    // this.setState({portfolio: profitAmt})
+    this.setState({portfolio: profitAmt})
+    console.log("*********portfolio*******", this.state.portfolio);
+  }
+  
   handleChange(event) {
-    console.log("******", event.target.value)
+    // console.log("******", event.target.value)
     var sq = event.target.value;
     this.setState({ quantity: parseInt(sq) });
     let p = parseFloat(document.getElementById('sprice').innerHTML);
     const totalAmt = parseInt(sq) * p;
     document.getElementById('total').innerHTML = totalAmt;
     this.setState({ amount: totalAmt });
-
-    console.log(this.state.price, parseInt(sq));
+    console.log("*********amt*******", this.state.amount);
+    // console.log(this.state.price, parseInt(sq));
   }
 
   async strDataShow(event) {
