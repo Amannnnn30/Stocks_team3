@@ -39,13 +39,13 @@
 }
 
 .footer {
-  position: "fixed",
-  left: "0",
-  bottom: "0",
-  width: "100%",
-  backgroundColor: "red",
-  color: "white",
-  textAlign: "center"
+  position: "fixed";
+  left: "0";
+  bottom: "0";
+  width: "100%";
+  background-color: "red";
+  color: "white";
+  text-align: "center";
 } */
 
 @keyframes App-logo-spin {

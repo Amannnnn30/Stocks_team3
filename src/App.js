@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-// import PnlComponent from './Pnl';
 import { Link } from "react-router-dom";
-// import { Button } from 'semantic-ui-react';
-import { useState } from 'react';
 import "./App.css"
 import axios from "axios";
 
@@ -28,7 +25,7 @@ class App extends Component {
     };
 
   }
-  
+
   componentDidMount(){
     axios.get("http://localhost:3003/stocklist")
       .then((res)=>{
@@ -79,7 +76,7 @@ class App extends Component {
         {stock.sname}
       </option>
     ));
-    let { strData } = this.state;
+
     const myStyle = {
       color: "black",
       backgroundColor: "white",
@@ -100,7 +97,7 @@ class App extends Component {
 
     return (
 
-      <div className="mystyle" >
+      <div style={myStyle}>
 
         <h1>WELCOME TO STOCK MARKET!</h1>
         <div>
@@ -146,7 +143,7 @@ class App extends Component {
           </button>
         </Link>
 
-        <footer style={footer} id="footer">
+        <footer style={footer} id="footer" className="footer">
           <Link style={{ color: '#000' }} to='/addstock' state={{ props: { ...this.state } }} >
             <button id="addstock">Add a stock</button>
           </Link>
