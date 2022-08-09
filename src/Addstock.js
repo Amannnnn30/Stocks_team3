@@ -1,7 +1,7 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate} from 'react-router-dom';
 import { useState } from 'react';
-import ReactDOM from 'react-dom/client';
+import axios from 'axios';
 
 function MyForm() {
   const [inputs, setInputs] = useState({});
@@ -11,10 +11,18 @@ function MyForm() {
     const value = event.target.value;
     setInputs(values => ({...values, [name]: value}))
   }
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(inputs);
+    console.log(inputs);
+    axios.post("http://localhost:3003/add-new-stock",inputs).then((res)=>{
+     console.log(res);
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+    navigate('/');
   }
 
   return (
