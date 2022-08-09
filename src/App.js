@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // import { Button } from 'semantic-ui-react';
 import { useState } from 'react';
 import "./App.css"
+import axios from "axios";
 
 class App extends Component {
 
@@ -17,13 +18,27 @@ class App extends Component {
       amount: 0,
       stockId: 0,
       data: [
-        { id: 1, stock: "HCL", price: 500 },
-        { id: 2, stock: "Infosys", price: 1000 },
-        { id: 3, stock: "TCS", price: 1500 },
-        { id: 4, stock: "Wipro", price: 2000 },
+        // { id: 1, stock: "HCL", price: 500 },
+        // { id: 2, stock: "Infosys", price: 1000 },
+        // { id: 3, stock: "TCS", price: 1500 },
+        // { id: 4, stock: "Wipro", price: 2000 },
       ],
     };
+
   }
+  
+  componentDidMount(){
+    axios.get("http://localhost:3003/stocklist")
+      .then((res)=>{
+        this.setState({
+          data:res.data
+        })
+        // console.log(res.data);
+      })
+      .catch((err)=>{
+          console.log(err)
+      })
+}
 
   profitCalc() {
     
@@ -64,10 +79,10 @@ class App extends Component {
   render() {
     let optionsList = this.state.data.map((stock) => (
       <option id={stock.id} value={stock.price}>
-        {stock.stock}
+        {stock.sname}
       </option>
     ));
-    // let { strData } = this.state;
+    let { strData } = this.state;
     const myStyle = {
       color: "black",
       backgroundColor: "white",
@@ -88,7 +103,7 @@ class App extends Component {
 
     return (
 
-      <div style={myStyle} >
+      <div className="mystyle" >
 
         <h1>WELCOME TO STOCK MARKET!</h1>
         <div>
