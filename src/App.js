@@ -8,49 +8,71 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      portfolio: 0,
-      amount: 0,
-      strData: 0,
+      portfolio: 100,
       price: 0,
+      strData: 0,
+      quantity: 0,
+      amount: 0,
+      stockId: 0,
       data: [
-        { id: 1, stock: "HCL", price: 500 },
-        { id: 2, stock: "Infosys", price: 1000 },
-        { id: 3, stock: "TCS", price: 1500 },
-        { id: 4, stock: "Wipro", price: 2000 },
+        // { id: 1, stock: "HCL", price: 500 },
+        // { id: 2, stock: "Infosys", price: 1000 },
+        // { id: 3, stock: "TCS", price: 1500 },
+        // { id: 4, stock: "Wipro", price: 2000 },
       ],
     };
 
   }
 
-  componentDidMount() {
+  componentDidMount(){
     axios.get("http://localhost:3003/stocklist")
-      .then((res) => {
+      .then((res)=>{
         this.setState({
-          data: res.data
+          data:res.data
         })
         // console.log(res.data);
       })
-      .catch((err) => {
-        console.log(err)
+      .catch((err)=>{
+          console.log(err)
       })
-  }
+}
 
+  profitCalc() {
+    
+    
+    // callback timer
+
+
+
+    var amount = parseInt(document.getElementById("total").innerHTML);
+    var profitAmt = amount * 0.015 + this.state.portfolio;
+    console.log(profitAmt);
+    // this.setState({portfolio: profitAmt})
+    this.setState({portfolio: profitAmt})
+    console.log("*********portfolio*******", this.state.portfolio);
+  }
+  
   handleChange(event) {
-    this.setState({ quantity: parseInt(event.target.value) });
+    // console.log("******", event.target.value)
+    var sq = event.target.value;
+    this.setState({ quantity: parseInt(sq) });
     let p = parseFloat(document.getElementById('sprice').innerHTML);
-    const totalAmt = parseInt(event.target.value) * p;
+    const totalAmt = parseInt(sq) * p;
     document.getElementById('total').innerHTML = totalAmt;
     this.setState({ amount: totalAmt });
-
+    console.log("*********amt*******", this.state.amount);
+    // console.log(this.state.price, parseInt(sq));
   }
 
   async strDataShow(event) {
     await this.setState({
       strData: event.target.value,
     });
+    console.log("testing", event.target.value, this.state.strData);
     this.state.price = event.target.value;
+    // document.getElementById("sprice").innerHTML = this.state.price;
   }
-
+  // const [data, setData] = useState('');
   render() {
     let optionsList = this.state.data.map((stock) => (
       <option id={stock.id} value={stock.price}>
@@ -81,9 +103,8 @@ class App extends Component {
       <div style={myStyle}>
 
         <h1>WELCOME TO STOCK MARKET!</h1>
-        <h3>Here is you watchlist</h3>
-        <form onSubmit={this.handleSubmit}>
-
+        <div>
+          <h3>Here is you watchlist</h3>
           Choose a stock to buy:
           <span>
             <select id="stockname" onChange={(e) => {
@@ -98,32 +119,32 @@ class App extends Component {
               {optionsList}
             </select>
           </span>
-          <div>
-            Price:
-            <span id="sprice"></span>
+        </div>
+        <div>
+          Price:
+          <span id="sprice"></span>
+        </div>
+        <div>
+          <div id="quantity" className="quantity">
+            <label for="quantity"> Enter the quantity:</label>
+            <input type="number" id="quantity" name="quantity" onChange={this.handleChange.bind(this)} />
           </div>
-          <div>
-            <label>
-              Quantity:
-              <input type="number" value={this.state.value} onChange={this.handleChange.bind(this)} />
-            </label>
-            <div id="tpa">Total Purchase Amount: <span id='total'></span></div>
-          </div>
-          {/* <QuantityComponent price={this.state.price} />
-          <PnlCalculation profitCalc={this.profitCalc} /> */}
+          <div id="tpa">Total Purchase Amount: <span id='total'></span></div>
+        </div>
+        {/* <QuantityComponent price={this.state.price} />
+        <PnlCalculation profitCalc={this.profitCalc} /> */}
 
-          <Link style={{ color: '#000' }} to={`/portfolio`} state={{ props: { ...this.state } }} >
-            <button >
-              Profit
-            </button>
-          </Link>
-          
-          <Link style={{ color: '#000' }} to={`/portfolio`} state={{ props: { ...this.state } }} >
-            <button>
-              Loss
-            </button>
-          </Link>
-        </form>
+        <Link onClick={this.profitCalc.bind(this)} style={{ color: '#000' }} to='/portfolio' state={{ props: { ...this.state } }} >
+          <button >
+            Profit
+          </button>
+        </Link>
+
+        <Link style={{ color: '#000' }} to='/portfolio' state={{ props: { ...this.state } }} >
+          <button>
+            Loss
+          </button>
+        </Link>
 
         <footer style={footer} id="footer" className="footer">
           <Link style={{ color: '#000' }} to='/addstock' state={{ props: { ...this.state } }} >
